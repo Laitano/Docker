@@ -1,0 +1,279 @@
+➜  ContinuousIntegration git:(master) ls
+bubble.c  bubble.h  main.c  makefile  README
+➜  ContinuousIntegration git:(master) mkdir Dockerfile
+➜  ContinuousIntegration git:(master) ls
+bubble.c  bubble.h  Dockerfile  main.c  makefile  README
+➜  ContinuousIntegration git:(master) rm -rf Dockerfile
+➜  ContinuousIntegration git:(master) ls
+bubble.c  bubble.h  main.c  makefile  README
+➜  ContinuousIntegration git:(master) docker login registry.gitlab.com
+Warning: failed to get default registry endpoint from daemon (Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.29/info: dial unix /var/run/docker.sock: connect: permission denied). Using system default: https://index.docker.io/v1/
+Username: laitanolucas
+Password: 
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.29/auth: dial unix /var/run/docker.sock: connect: permission denied
+➜  ContinuousIntegration git:(master) sudo docker login registry.gitlab.com
+Username: laitanolucas
+Password: 
+Error response from daemon: Get https://registry.gitlab.com/v2/: unauthorized: HTTP Basic: Access denied
+➜  ContinuousIntegration git:(master)  ssh-keygen -t rsa -C laitanolucas@gmail.com
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/laitano/.ssh/id_rsa): 
+Created directory '/home/laitano/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/laitano/.ssh/id_rsa.
+Your public key has been saved in /home/laitano/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:JAqmC+u8vv3PkKYKkJsDPY2uGXQlh/vL1D8VFhJbnr4 laitanolucas@gmail.com
+The key's randomart image is:
++---[RSA 2048]----+
+|         ...     |
+|    .    .+..    |
+|  oo o. ...o.    |
+| = +=. o  .o     |
+|*.+oo   S ...    |
+|=*... o    ..    |
+|O .  * .  .E     |
+|+=. = + ..       |
+|+B+o.+.o ..      |
++----[SHA256]-----+
+➜  ContinuousIntegration git:(master) cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGMC+4gbZjK/3uLSfhIkJpx93j3/O7a76LSEOFRbBMF1M0Ps6UPjMUamI9W91+9yosxUanJ2K2whhNSufuxRy6z+kAwJyGzR1TA6LBGmUmDcbZO20Vm/dTw7tSU5y+ig+biflNs0oPAzwtcKHoAfthWsQvG6F0cW0hu4zzNaIyIPIqGC1DFLhoTgUPAqEusDp/BEfKFZnAsaxHiur9Q5n81mc88RcYz71uKD2L2fjuws9eBgSLHqOlwvlHnfR/JckTfRzj/D8G8QnSbk2fxpb2oPoElPVVm0EWTsDWuzG0mBijEIR1IzMW6b19Y7+cQYLMLIVf8oTHsqYeih2sK1Jh laitanolucas@gmail.com
+➜  ContinuousIntegration git:(master) cd ..
+➜  doulgas ls
+ContinuousIntegration
+➜  doulgas rm -rf
+➜  doulgas ls
+ContinuousIntegration
+➜  doulgas rm -rf ContinuousIntegration 
+➜  doulgas ls
+➜  doulgas git clone git@gitlab.com:laitanolucas/ContinuousIntegration.git
+Cloning into 'ContinuousIntegration'...
+The authenticity of host 'gitlab.com (52.167.219.168)' can't be established.
+ECDSA key fingerprint is SHA256:HbW3g8zUjNSksFbqTiUWPWg2Bq1x8xdGUrliXFzSnUw.
+Are you sure you want to continue connecting (yes/no)? Y
+Please type 'yes' or 'no': yes
+Warning: Permanently added 'gitlab.com,52.167.219.168' (ECDSA) to the list of known hosts.
+remote: Counting objects: 7, done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 7 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (7/7), 4.27 KiB | 0 bytes/s, done.
+Checking connectivity... done.
+➜  doulgas ls
+ContinuousIntegration
+➜  doulgas cd ContinuousIntegration 
+➜  ContinuousIntegration git:(master) ls
+bubble.c  bubble.h  main.c  makefile  README
+➜  ContinuousIntegration git:(master) gedit &
+[1] 5430
+➜  ContinuousIntegration git:(master) 
+[1]  + 5430 done       gedit
+➜  ContinuousIntegration git:(master) ✗ git add fib.c
+➜  ContinuousIntegration git:(master) ✗ git commit -m "fibo"
+[master 6dbe80e] fibo
+ 1 file changed, 21 insertions(+)
+ create mode 100644 fib.c
+➜  ContinuousIntegration git:(master) git push    
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 491 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: 
+remote: ========================================================================
+remote: 
+remote:                We are currently deploying GitLab EE 9.5.3
+remote: 
+remote: ========================================================================
+To git@gitlab.com:laitanolucas/ContinuousIntegration.git
+   cc58dda..6dbe80e  master -> master
+➜  ContinuousIntegration git:(master) sudo docker login registry.gitlab.com
+[sudo] password for laitano: 
+Sorry, try again.
+[sudo] password for laitano: 
+Sorry, try again.
+[sudo] password for laitano: 
+sudo: 3 incorrect password attempts
+➜  ContinuousIntegration git:(master) sudo docker login registry.gitlab.com
+[sudo] password for laitano: 
+Username: laitanolucas
+Password: 
+Login Succeeded
+➜  ContinuousIntegration git:(master) sudo docker image
+
+Usage:	docker image COMMAND
+
+Manage images
+
+Options:
+      --help   Print usage
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+➜  ContinuousIntegration git:(master) sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+apache2             test                89c23fe9e063        2 days ago          224MB
+ubuntu              14.04               3cbfe7df41bf        3 days ago          188MB
+tutorial-docker     latest              9fa0ed622e11        5 days ago          266MB
+ubuntu              trusty              c69811d4e993        3 weeks ago         188MB
+google/ruby         latest              1646c63a8f2f        4 weeks ago         129MB
+debian              latest              a20fd0d59cf1        5 weeks ago         100MB
+alpine              latest              7328f6f8b418        2 months ago        3.97MB
+hello-world         latest              1815c82652c0        2 months ago        1.84kB
+➜  ContinuousIntegration git:(master) sudo docker tag registry.gitlab.com/laitanolucas/continuousintegration
+"docker tag" requires exactly 2 argument(s).
+See 'docker tag --help'.
+
+Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
+Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+➜  ContinuousIntegration git:(master) sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+apache2             test                89c23fe9e063        2 days ago          224MB
+ubuntu              14.04               3cbfe7df41bf        3 days ago          188MB
+tutorial-docker     latest              9fa0ed622e11        5 days ago          266MB
+ubuntu              trusty              c69811d4e993        3 weeks ago         188MB
+google/ruby         latest              1646c63a8f2f        4 weeks ago         129MB
+debian              latest              a20fd0d59cf1        5 weeks ago         100MB
+alpine              latest              7328f6f8b418        2 months ago        3.97MB
+hello-world         latest              1815c82652c0        2 months ago        1.84kB
+➜  ContinuousIntegration git:(master) sudo docker tag debian:registry.gitlab.com/laitanolucas/continuousintegration
+"docker tag" requires exactly 2 argument(s).
+See 'docker tag --help'.
+
+Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
+Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+➜  ContinuousIntegration git:(master) sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+apache2             test                89c23fe9e063        2 days ago          224MB
+ubuntu              14.04               3cbfe7df41bf        3 days ago          188MB
+tutorial-docker     latest              9fa0ed622e11        5 days ago          266MB
+ubuntu              trusty              c69811d4e993        3 weeks ago         188MB
+google/ruby         latest              1646c63a8f2f        4 weeks ago         129MB
+debian              latest              a20fd0d59cf1        5 weeks ago         100MB
+alpine              latest              7328f6f8b418        2 months ago        3.97MB
+hello-world         latest              1815c82652c0        2 months ago        1.84kB
+➜  ContinuousIntegration git:(master) sudo docker tag debian:latestregistry.gitlab.com/laitanolucas/continuousintegration
+"docker tag" requires exactly 2 argument(s).
+See 'docker tag --help'.
+
+Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
+Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+➜  ContinuousIntegration git:(master) sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+apache2             test                89c23fe9e063        2 days ago          224MB
+ubuntu              14.04               3cbfe7df41bf        3 days ago          188MB
+tutorial-docker     latest              9fa0ed622e11        5 days ago          266MB
+ubuntu              trusty              c69811d4e993        3 weeks ago         188MB
+google/ruby         latest              1646c63a8f2f        4 weeks ago         129MB
+debian              latest              a20fd0d59cf1        5 weeks ago         100MB
+alpine              latest              7328f6f8b418        2 months ago        3.97MB
+hello-world         latest              1815c82652c0        2 months ago        1.84kB
+➜  ContinuousIntegration git:(master) sudo docker tag debian:latestregistry.gitlab.com/laitanolucas/continuousintegration/debian:latest
+"docker tag" requires exactly 2 argument(s).
+See 'docker tag --help'.
+
+Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
+Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+➜  ContinuousIntegration git:(master) sudo docker tag debian:latest registry.gitlab.com/laitanolucas/continuousintegration/debian:latest
+➜  ContinuousIntegration git:(master) docker push registry.gitlab.com/laitanolucas/continuousintegration/debian:latest
+WARNING: Error loading config file:/home/laitano/.docker/config.json - stat /home/laitano/.docker/config.json: permission denied
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.29/images/registry.gitlab.com/laitanolucas/continuousintegration/debian/push?tag=latest: dial unix /var/run/docker.sock: connect: permission denied
+➜  ContinuousIntegration git:(master) sudo docker push registry.gitlab.com/laitanolucas/continuousintegration/debian:latest
+The push refers to a repository [registry.gitlab.com/laitanolucas/continuousintegration/debian]
+cf4ecb492384: Pushed 
+latest: digest: sha256:6ccbcbf362dbc4add74711cb774751b59cdfd7aed16c3c29aaecbea871952fe0 size: 529
+➜  ContinuousIntegration git:(master) gedit &
+[1] 5853
+➜  ContinuousIntegration git:(master) ✗ 
+[1]  + 5853 done       gedit
+➜  ContinuousIntegration git:(master) ✗ sudo docker run -i -t debian /bin/bash                                                                    
+root@7a02f8fd9316:/# ls
+bin  boot  dev	etc  home  lib	lib32  lib64  libx32  media  mnt  opt  proc  root  run	sbin  srv  sys	tmp  usr  var
+root@7a02f8fd9316:/# cd home/
+root@7a02f8fd9316:/home# ls
+root@7a02f8fd9316:/home# exit
+exit
+➜  ContinuousIntegration git:(master) ✗ pwd                                                           
+/home/laitano/doulgas/ContinuousIntegration
+➜  ContinuousIntegration git:(master) ✗ sudo docker run -it -v /home/laitano/doulgas/ContinuousIntegration:/homeregistry.gitlab.com/lohmann/citest/debian:latest
+"docker run" requires at least 1 argument(s).
+See 'docker run --help'.
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+➜  ContinuousIntegration git:(master) ✗ sudo docker run -it -v /home/laitano/doulgas/ContinuousIntegration:/home registry.gitlab.com/laitanolucas/continuousintegration/debian:latest
+root@435e65d29381:/# ls
+bin  boot  dev	etc  home  lib	lib32  lib64  libx32  media  mnt  opt  proc  root  run	sbin  srv  sys	tmp  usr  var
+root@435e65d29381:/# cd home
+root@435e65d29381:/home# ls
+README	bubble.c  bubble.h  fib.c  main.c  makefile
+root@435e65d29381:/home# exit
+exit
+➜  ContinuousIntegration git:(master) ✗ git add .gitlab-cy-yml
+fatal: pathspec '.gitlab-cy-yml' did not match any files
+➜  ContinuousIntegration git:(master) ✗ git add .gitlab-ci-yml
+fatal: pathspec '.gitlab-ci-yml' did not match any files
+➜  ContinuousIntegration git:(master) ✗ ls                    
+bubble.c  bubble.h  fib.c  main.c  makefile  README
+➜  ContinuousIntegration git:(master) ✗ ls -ilha
+total 44K
+18874742 drwxrwxr-x 3 laitano laitano 4,0K Set  4 08:29 .
+18613369 drwxrwxr-x 3 laitano laitano 4,0K Set  4 08:14 ..
+18875014 -rw-rw-r-- 1 laitano laitano  513 Set  4 08:14 bubble.c
+18875015 -rw-rw-r-- 1 laitano laitano  105 Set  4 08:14 bubble.h
+18874999 -rw-rw-r-- 1 laitano laitano  488 Set  4 08:15 fib.c
+18874963 drwxrwxr-x 8 laitano laitano 4,0K Set  4 08:35 .git
+18875055 -rw-rw-r-- 1 laitano laitano  347 Set  4 08:29 .gitlab-ci.yml
+18875016 -rw-rw-r-- 1 laitano laitano 5,9K Set  4 08:14 main.c
+18875017 -rw-rw-r-- 1 laitano laitano 2,2K Set  4 08:14 makefile
+18875013 -rw-rw-r-- 1 laitano laitano 2,5K Set  4 08:14 README
+➜  ContinuousIntegration git:(master) ✗ git add .gitlab-ci.yml
+➜  ContinuousIntegration git:(master) ✗ git commit -m ".gitlab-ci.yml"
+[master 4150776] .gitlab-ci.yml
+ 1 file changed, 21 insertions(+)
+ create mode 100644 .gitlab-ci.yml
+➜  ContinuousIntegration git:(master) git push -u origin master
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 475 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: 
+remote: ========================================================================
+remote: 
+remote:                We are currently deploying GitLab EE 9.5.3
+remote: 
+remote: ========================================================================
+To git@gitlab.com:laitanolucas/ContinuousIntegration.git
+   6dbe80e..4150776  master -> master
+Branch master set up to track remote branch master from origin.
+➜  ContinuousIntegration git:(master) cd Desktop
+cd: no such file or directory: Desktop
+➜  ContinuousIntegration git:(master) ls
+bubble.c  bubble.h  fib.c  main.c  makefile  README
+➜  ContinuousIntegration git:(master) cd ~/Desktop
+➜  Desktop gedit &
+[1] 6492
+➜  Desktop cat .bash_history | nl | tail 
+cat: .bash_history: No such file or directory
+➜  Desktop 
+➜  Desktop 
+

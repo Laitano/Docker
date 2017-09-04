@@ -1,0 +1,115 @@
+tópicos:
+
+Se for em um computador novo tem que adicionar o SSH invés do HTTPS. Isso é algo do gitlab e não da IC. {
+
+
+$ ssh-keygen -t rsa -C laitanolucas@gmail.com
+
+$ cat ~/.ssh/id_rsa.pub
+
+
+                                                                                                          }
+
+
+
+
+// Agora eu vou pegar a pasta do GitLab que ta o projeto que eu quero trabalhar e dar um GIT CLONE. No exemplo usaremos: 
+
+$ git clone git@gitlab.com:laitanolucas/ContinuousIntegration.git
+
+// Depois eu criei um arquivo chamado fib.c dentro dessa pasta e dei um push
+
+$ git add
+
+$ git commit -m " um nome qualquer "
+
+$ git push -u origin master
+
+
+$ sudo docker login registry.gitlab.com    // faz um login no Docker registry lá do gitlab
+
+// Para confirmar que eu baixei a imagem , que nesse caso se chamava debian  eu fiz:
+
+$ sudo docker images 
+
+// Agora eu renomeie a imagem através de TAG usando
+
+$ sudo docker push registry.gitlab.com/laitanolucas/continuousintegration/debian:latest
+
+// Agora, de um comando pwd só para saber ao certo em que pasta você está
+
+$ pwd
+
+OBS: A resposta do terminal foi: /home/laitano/doulgas/ContinuousIntegration
+
+
+// Agora vamos dar um run nessa imagem:
+
+$ sudo docker run -it -v /home/laitano/doulgas/ContinuousIntegration:/home registry.gitlab.com/laitanolucas/continuousintegration/debian:latest
+
+OBS: no último :/home regi...  significa que eu salvei e rodei essa imagem na pasta home
+
+// Agora eu devo criar um arquivo .gitlab-ci.yml
+
+$ gedit & 
+OBS: Dentro desse arquivo eu devo colar
+
+image: registry.gitlab.com/lohmann/citest/debian:latest
+
+build:
+  stage: build
+  # before_script: 
+  script:
+    - apt-get -y update && apt-get -y upgrade
+    - apt-get install -y build-essential
+    - gcc fibonacciRecursive.c -o fact
+  artifacts:
+    paths:
+      - fact
+  # cache:
+  #   paths:
+
+test:
+  stage: test
+  script:
+    - ./fact.sh
+
+E DEPOIS EU NÃO POSSO ESQUECER DE SALVA-LO COMO .gitlab-ci.yml
+
+$ git add .gitlab-ci.yml
+
+$ git commit -m ".gitlab-ci.yml"
+
+$ git push -u origin master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Criar uma imagem no Docker:
+
+Renomear a imagem criada através do TAG
+
+Dar um push na imagem para o GitLab
+
+Criar o arquivo de BUILD  ( .gitlab-ci.yml )
+
+

@@ -1,0 +1,21 @@
+image: registry.gitlab.com/lohmann/citest/debian:latest
+
+build:
+  stage: build
+  # before_script: 
+  script:
+    - apt-get -y update && apt-get -y upgrade
+    - apt-get install -y build-essential
+    - gcc fibonacciRecursive.c -o fact
+  artifacts:
+    paths:
+      - fact
+  # cache:
+  #   paths:
+
+test:
+  stage: test
+  script:
+    - ./fact.sh
+
+
